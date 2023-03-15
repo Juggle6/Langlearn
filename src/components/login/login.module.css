@@ -1,0 +1,21 @@
+.loginScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loginForm {
+    width: 30%;
+    border: 1px solid green;
+    border-radius: 15px;
+    padding: 0px 40px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-20%);
+}
+
+.header h1 {
+    line-height: 0;
+}

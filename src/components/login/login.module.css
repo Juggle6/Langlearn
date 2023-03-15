@@ -19,3 +19,13 @@
 .header h1 {
     line-height: 0;
 }
+
+.passwordInputBox {
+    display: flex;
+    align-items: center;
+}
+
+.showPassword {
+    display: flex;
+    align-items: center;
+}

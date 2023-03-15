@@ -3,9 +3,15 @@ import React, { useState } from 'react';
 
 export default function Login() {
     const [fields, setFields] = useState({username: "", password: "", rememberMe: false});
+    const [passwordType, setPasswordType] = useState("password");
 
     function handleChange(event) {
         setFields({...fields, [event.target.name]: event.target.type === 'checkbox' ? event.target.checked : event.target.value});
+    };
+
+    function handleButtonClick() {
+        event.preventDefault();
+        setPasswordType(passwordType === 'password' ? 'text' : 'password');
     };
 
     return (
@@ -20,7 +26,12 @@ export default function Login() {
                 </div>
                 <div className={styles.passwordDiv}>
                     <h2>Password</h2>
-                    <input name="password" type="text" className={styles.textBox} placeholder="Enter a password" onChange={handleChange} value={fields.password}/>
+                    <div className={styles.passwordInputBox}>
+                        <input name="password" type={passwordType} className={styles.textBox} placeholder="Enter a password" onChange={handleChange} value={fields.password}/>
+                        <button onClick={handleButtonClick} className={styles.showPassword}>
+                            {passwordType === "password" ? <img src="eye-slash.svg" /> : <img src="eye.svg" />}
+                        </button>
+                    </div>
                 </div>
                 <div className={styles.rememberMe}>
                     <h2>Remember Me</h2>

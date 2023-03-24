@@ -1,19 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
 .loginScreen {
+  background-image: url("/LoginBackground.png");
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+
 }
 
 .loginForm {
   width: 30%;
-  border: 1px solid green;
-  border-radius: 15px;
-  padding: 0px 40px;
+  background-color: #ffffff75;
+  border-radius: 30px;
+  padding:  60px 100px;
   width: 40%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   transform: translateY(-20%);
+  
 }
 
 .header h1 {
@@ -28,4 +35,66 @@
 .showPassword {
   display: flex;
   align-items: center;
+  margin-left: 20px;
+  background-color: #385273;
+  border: none;
+  width: 30px;
+  height: 30px;
+
+}
+
+.textBox {
+  padding: 10px;
+  background-color: #385273;
+  border: none;
+  color: white;
+  line-height: 1.1;
+}
+
+.textBox:focus {
+  outline: none;
+}
+
+.textBox::placeholder {
+  color: white;
+}
+
+.userNameDiv {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.passwordDiv {
+  display: flex;
+  align-items: center;
+  margin-left: 53px;
+}
+
+.checkBox {
+  transform: scale(2);
+  margin-left: 10px;
+}
+
+.submit {
+  background-color: #385273;
+  color: white;
+  border: none;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  transition: background-color 0.15s;
+}
+
+.submit:hover {
+  background-color: #202f42;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .passwordInputBox {
+
+  }
 }

@@ -21,11 +21,11 @@ export default function Login() {
           <h1>Login</h1>
         </div>
         <div className={styles.userNameDiv}>
-          <h2>Username</h2>
+          <img src="userIcon.png" width={35} className="personIcon"/>
           <input name="username" type="text" className={styles.textBox} placeholder="Enter a username" onChange={handleChange} value={fields.username}/>
         </div>
         <div className={styles.passwordDiv}>
-          <h2>Password</h2>
+          <img src="Padlock.png" width={35.5} className="personIcon"/>
           <div className={styles.passwordInputBox}>
             <input name="password" type={passwordType} className={styles.textBox} placeholder="Enter a password" onChange={handleChange} value={fields.password}/>
             <button onClick={handleButtonClick} className={styles.showPassword}>
@@ -34,7 +34,7 @@ export default function Login() {
           </div>
         </div>
         <div className={styles.rememberMe}>
-          <h2>Remember Me</h2>
+          <h2 style={{display: 'inline-block'}}>Remember Me</h2>
           <input name="rememberMe" type="checkbox" className={styles.checkBox} onChange={handleChange} value={fields.rememberMe}/>
         </div>
         <div className={styles.submitDiv}>

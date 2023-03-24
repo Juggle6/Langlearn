@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
 
 .loginScreen {
-  background-image: url("/LoginBackground.png");
+  background: linear-gradient(to right, rgb(207,136,140), rgb(52,86,150));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +12,7 @@
 
 .loginForm {
   width: 30%;
-  background-color: #ffffff75;
+  background-color: #ffffff50;
   border-radius: 30px;
   padding:  60px 100px;
   width: 40%;
@@ -20,7 +20,18 @@
   flex-direction: column;
   align-items: center;
   transform: translateY(-20%);
-  
+  animation: fade 1s ease-in 1s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .header h1 {

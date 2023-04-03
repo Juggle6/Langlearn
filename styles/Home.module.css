@@ -1,11 +1,14 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .welcomeScreen {
   background-color: #304D6D;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
   color: white;
   justify-content: center;
-  align-items: center;
 }
 
 .title {
@@ -44,9 +47,7 @@
   justify-content: space-between;
   position: absolute;
   width: 100%;
-  color: #cccccc;
   height: 30px;
-  font-size: 11pt;
   background-color: #304D6D;
   user-select: none;
 }
@@ -60,10 +61,26 @@
 
 .headerGroup > a {
   transition: color 0.08s, filter 0.08s;
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 11pt;
 }
 
 .headerGroup > a:hover {
   color: #00A6FF;
   filter: brightness(120%);
   cursor: pointer;
+}
+
+.refoldValue {
+  max-width: 350px;
+  padding: 10px;
+  background-color: #304D6D;
+  border: 2px solid #00A6FF;
+  border-radius: 10px;
+  color: white;
+}
+
+.signUpLink {
+  width: 100%;
 }

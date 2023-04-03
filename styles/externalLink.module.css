@@ -1,0 +1,9 @@
+.text {
+  color: #00A6FF;
+  text-decoration: none;
+}
+
+.text:hover {
+  cursor: pointer;
+  filter: brightness(120%);
+}

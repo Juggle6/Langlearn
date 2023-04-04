@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { Users } from '@/data/users.js';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();

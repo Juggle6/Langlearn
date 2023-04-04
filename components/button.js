@@ -1,6 +1,6 @@
 import utilStyles from '../styles/utils.module.css';
 
-export default function Button({ text, href, handlerFunction, type }) {
+export default function Button({ text, href, handlerFunction, type, tColor }) {
   function openNewTab(e) {
     e.preventDefault()
     e.stopPropagation()
@@ -9,5 +9,5 @@ export default function Button({ text, href, handlerFunction, type }) {
 
   return <button className={type === 'hl' 
     ? `${utilStyles.button} ${utilStyles.hlButton}`
-    : utilStyles.button} onClick={handlerFunction ? handlerFunction : href ? openNewTab : null} type="button">{text}</button>
+    : `${utilStyles.button} ${tColor === 'black' ? utilStyles.blackText : null}`} onClick={handlerFunction ? handlerFunction : href ? openNewTab : null} type="button">{text}</button>
 }

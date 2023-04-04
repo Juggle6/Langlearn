@@ -22,6 +22,10 @@
   transition: filter .08s;
 }
 
+.blackText {
+  color: black;
+}
+
 .hlButton {
   background-color: #00A6FF;
 }

@@ -21,9 +21,9 @@ export default function Home() {
         <h1 className={`${utilStyles.subtitle} ${styles.title}`}>WE MAKE <span className={utilStyles.hlText}>LANGUAGE LEARNING</span> FUN</h1>
         <div className={styles.titleButtons}>
           <Link href="/sign-up" className={styles.signUpLink}>
-            <Button type="hl" text="Sign Up" />
+            <button className={`${utilStyles.button} ${utilStyles.hlButton}`}>Sign Up</button>
           </Link>
-          <Button text="Learn More" />
+          <button className={utilStyles.button}>Learn More</button>
         </div>
       </section>
       <section className={styles.section}>
@@ -32,7 +32,9 @@ export default function Home() {
           <div className={styles.refoldValue}>
             <h3>The Refold philosophy</h3>
             <p>The Refold philosophy for learning languages suggests that you should learn to comprehend input before you learn to produce output. Langlearn is built with this idea in mind.</p>
-            <Button text="Read more" href="https://google.com/" type="hl"/>
+            <a href="https://google.com">
+              <button className={utilStyles.button}>Read More</button>
+            </a>
           </div>
         </div>
       </section>

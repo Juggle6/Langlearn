@@ -3,13 +3,22 @@ import styles from '@/styles/auth.module.css';
 import utilStyles from '@/styles/utils.module.css';
 import Button from '@/components/button.js';
 import {useRouter} from 'next/router';
+import {signIn} from 'next-auth/react';
 
 export default function SignUpPage() {
   const [form, setForm] = useState({username: '', email: '', password: ''})
   const [showPassword, setShowPassword] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    const response = await fetch('/api/auth/signup', {
+      method: 'POST',
+      body: JSON.stringify(form)
+    })
+
+    if (!response.ok) {
+      console.error("Something happened while registering your credentials.");
+    }
   }
 
   function handleChange(e) {
@@ -25,7 +34,7 @@ export default function SignUpPage() {
   function handleLogIn(e) {
     e.preventDefault();
     e.stopPropagation();
-    router.push("/log-in")
+    router.push("/api/auth/signin")
   }
 
   return (

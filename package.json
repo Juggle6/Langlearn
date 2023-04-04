@@ -6,11 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preparedb": "npx prisma migrate dev"
   },
   "dependencies": {
+    "@prisma/client": "^4.12.0",
     "next": "13.2.4",
+    "next-auth": "^4.21.1",
+    "path": "^0.12.7",
     "react": "18.2.0",
     "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.12.0"
   }
 }

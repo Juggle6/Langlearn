@@ -1,25 +1,46 @@
 import {useState} from 'react';
+import {signIn} from 'next-auth/react';
+import {useRouter} from 'next/router';
 import styles from '@/styles/auth.module.css';
 import utilStyles from '@/styles/utils.module.css';
-import {signIn} from 'next-auth/react';
 import Link from 'next/link';
 
 export default function SignUpPage() {
   const [form, setForm] = useState({username: '', email: '', password: ''})
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState();
+  const router = useRouter();
 
   async function handleSubmit(e) {
     e.preventDefault()
     const response = await fetch('/api/auth/signup', {
       method: 'POST',
       body: JSON.stringify(form)
-    })
+    });
 
     if (!response.ok) {
-      return console.error("Something happened while registering your credentials.");
-    }
+      const data = await response.json()
+        .then((response) => {
+          const error = response.error;
 
-    signIn('credentials', { username: form.username, password: form.password })
+          if (error === 'ConflictingCredentials') {
+            setError("There is already someone registered with that username or email.");
+          } else {
+            setError("An error has occurred while attempting to fetch the API. Plesae try again later.");
+          }
+          return;
+        })
+    } else {
+      const newUser = response.json();
+
+      signIn('credentials', { redirect: false, username: form.username, password: form.password })
+        .then((ok, error) => {
+          if (ok) {
+            return router.push('/dashboard')
+          }
+        })
+    }
+    
   }
 
   function handleChange(e) {
@@ -45,6 +66,11 @@ export default function SignUpPage() {
         <div className={styles.textInput}>
           <input name="password" className={styles.authTextInput} type={showPassword ? "text" : "password"} placeholder='Password' onChange={handleChange} value={form.password}/>
         </div>
+        {error ? (
+          <div className={styles.errorBox}>
+            <p>{error}</p>
+          </div>
+        ) : null}
         <div className={styles.submitContent}>
           <button className={`${utilStyles.button} ${utilStyles.hlButton}`} type="submit" onClick={handleSubmit}>Sign Up</button>
           <div className={styles.dividerDiv}>

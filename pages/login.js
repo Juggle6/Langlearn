@@ -40,7 +40,7 @@ export default function Login() {
           <h1>Log in</h1>
         </div>
         <div className={styles.textInput}>
-          <input name="username" className={styles.authTextInput} type="text" placeholder='Username' onChange={handleChange} value={form.username}/>
+          <input name="username" className={styles.authTextInput} type="text" placeholder='Email/Username' onChange={handleChange} value={form.username}/>
         </div>
         <div className={styles.textInput}>
           <input name="password" className={styles.authTextInput} type={showPassword ? "text" : "password"} placeholder='Password' onChange={handleChange} value={form.password}/>

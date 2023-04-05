@@ -8,11 +8,28 @@ export default async function handler(req, res) {
 
   const newUserData = JSON.parse(req.body);
 
+  const otherUsers = await prisma.User.findFirst({
+    where: {
+      OR: [
+        {
+          username: newUserData.username,
+        },
+        {
+          email: newUserData.email,
+        },
+      ],
+    },
+  })
+
+  if (otherUsers) {
+    return res.status(400).json({error: "ConflictingCredentials"})
+  }
+
   const savedUser = await prisma.User.create({
     data: newUserData
   })
     .catch((err) => {
-      return res.status(400).send("Something went wrong while registering your credentials.");
+      return res.status(400).json({error: "ServerError"});
     })
   res.status(200).json(savedUser);
 }

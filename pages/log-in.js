@@ -4,20 +4,14 @@ import utilStyles from '@/styles/utils.module.css';
 import {useRouter} from 'next/router';
 import {signIn} from 'next-auth/react';
 
-export default function SignUpPage() {
-  const [form, setForm] = useState({username: '', email: '', password: ''})
+export default function SignIn() {
+  const [form, setForm] = useState({username: '', password: ''})
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const response = await fetch('/api/auth/signup', {
-      method: 'POST',
-      body: JSON.stringify(form)
-    })
-
-    if (!response.ok) {
-      console.error("Something happened while registering your credentials.");
-    }
+    signIn("credentials", { username: form.username, password: form.password });
   }
 
   function handleChange(e) {
@@ -28,7 +22,6 @@ export default function SignUpPage() {
     });
   }
 
-  const router = useRouter();
 
   function handleLogIn(e) {
     e.preventDefault();
@@ -44,9 +37,6 @@ export default function SignUpPage() {
         </div>
         <div className={styles.textInput}>
           <input name="username" className={styles.authTextInput} type="text" placeholder='Username' onChange={handleChange} value={form.username}/>
-        </div>
-        <div className={styles.textInput}>
-          <input name="email" className={styles.authTextInput} type="text" placeholder='Email' onChange={handleChange} value={form.email}/>
         </div>
         <div className={styles.textInput}>
           <input name="password" className={styles.authTextInput} type={showPassword ? "text" : "password"} placeholder='Password' onChange={handleChange} value={form.password}/>

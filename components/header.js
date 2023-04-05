@@ -4,11 +4,14 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <div className={styles.header}>
-      <div className={styles.profileNav}>
-        <Link href="/sign-up" className={utilStyles.navBarSignUp}>Sign Up</Link>
+    <header className={styles.header}>
+      <nav className={styles.headerGroup}>
+        <Link href="/" className={utilStyles.navBarLink}>Home</Link>
+      </nav>
+      <div className={styles.headerGroup}>
+        <Link href="/sign-up" className={utilStyles.navBarLink}>Sign Up</Link>
         <Link href="/login" className={utilStyles.navBarLink}>Log In</Link>
       </div>
-    </div>
+    </header>
   )
 }

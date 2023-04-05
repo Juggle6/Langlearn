@@ -1,9 +1,8 @@
 import {useState} from 'react';
 import styles from '@/styles/auth.module.css';
 import utilStyles from '@/styles/utils.module.css';
-import {useRouter} from 'next/router';
 import {signIn} from 'next-auth/react';
-import Layout from '@/components/layout.js';
+import Link from 'next/link';
 
 export default function SignUpPage() {
   const [form, setForm] = useState({username: '', email: '', password: ''})
@@ -31,14 +30,6 @@ export default function SignUpPage() {
     });
   }
 
-  const router = useRouter();
-
-  function handleLogIn(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    router.push("/api/auth/signin")
-  }
-
   return (
     <div className={styles.container}>
       <form className={styles.signUpForm}>
@@ -56,8 +47,14 @@ export default function SignUpPage() {
         </div>
         <div className={styles.submitContent}>
           <button className={`${utilStyles.button} ${utilStyles.hlButton}`} type="submit" onClick={handleSubmit}>Sign Up</button>
-          <hr className={styles.divider}/>
-          <button className={`${utilStyles.button} ${utilStyles.blackText}`} onClick={handleLogIn}>Log In</button>
+          <div className={styles.dividerDiv}>
+            <div className={styles.divider}/>
+            <span>or</span>
+            <div className={styles.divider}/>
+          </div>
+          <Link href="/login">
+            <button className={`${utilStyles.button} ${utilStyles.blackText}`}>Log In</button>
+          </Link>
         </div>
       </form>
     </div>

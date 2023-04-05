@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.headerGroup {
+  display: flex;
+  gap: 1rem;
+  margin: 0 1rem;
+}
+
+.headerGroup > a {
+  color: black;
+  text-decoration: none;
+}
+
+.headerGroup > a:hover {
+  cursor: pointer;
+  filter: opacity(80%);
+}

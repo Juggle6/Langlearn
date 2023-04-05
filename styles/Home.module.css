@@ -6,7 +6,7 @@
 
 .welcomeScreen {
   background-color: #304D6D;
-  height: 100vh;
+  height: calc(100vh - 3rem);
   color: white;
   justify-content: center;
 }

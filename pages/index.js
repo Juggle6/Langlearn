@@ -8,20 +8,8 @@ import { useSession } from "next-auth/react";
 export default function Home() {
   const { data: session } = useSession();
 
-  console.log("session", session);
-
   return(
     <>
-      <header className={styles.header}>
-        <nav className={styles.headerGroup}>
-          <a>Philosophy</a>
-          <a>About Us</a>
-        </nav>
-        <nav className={styles.headerGroup}>
-          <Link href="/sign-up" className={utilStyles.navBarSignUp}>Sign Up</Link>
-          <Link href="/api/auth/signin" className={utilStyles.navBarLink}>Log In</Link>
-        </nav>
-      </header>
       <section className={`${styles.welcomeScreen} ${styles.section}`}>
         <h1 className={`${utilStyles.subtitle} ${styles.title}`}>WE MAKE <span className={utilStyles.hlText}>LANGUAGE LEARNING</span> FUN</h1>
         <div className={styles.titleButtons}>

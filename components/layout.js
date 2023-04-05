@@ -1,10 +1,10 @@
-export default function Layout() {
+import Header from './header.js';
+
+export default function Layout({ children }) {
   return (
-    <div className={styles.header}>
-      <div className={styles.profileNav}>
-        <Link href="/sign-up" className={utilStyles.navBarSignUp}>Sign Up</Link>
-        <Link href="/login" className={utilStyles.navBarLink}>Log In</Link>
-      </div>
-    </div>
+    <>
+      <Header />
+      <main>{children}</main>
+    </>
   )
 }

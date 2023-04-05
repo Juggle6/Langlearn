@@ -7,7 +7,7 @@ export default function Dashboard() {
     return (
       <>
         Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <button onClick={() => signOut({ redirect: false })}>Sign out</button>
       </>
     )
   }

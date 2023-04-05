@@ -67,12 +67,15 @@ export default NextAuth({
       return session;
     },
     async redirect({ url, baseUrl }) {
-      return baseUrl
+      return `${baseUrl}/dashboard`
     },
   },
   secret: "test",
   jwt: {
     secret: "test",
     encryption: true,
+  },
+  pages: {
+    signIn: '/login',
   }
 })

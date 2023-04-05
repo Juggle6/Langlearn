@@ -3,6 +3,7 @@ import styles from '@/styles/auth.module.css';
 import utilStyles from '@/styles/utils.module.css';
 import {useRouter} from 'next/router';
 import {signIn} from 'next-auth/react';
+import Layout from '@/components/layout.js';
 
 export default function SignUpPage() {
   const [form, setForm] = useState({username: '', email: '', password: ''})
@@ -16,8 +17,10 @@ export default function SignUpPage() {
     })
 
     if (!response.ok) {
-      console.error("Something happened while registering your credentials.");
+      return console.error("Something happened while registering your credentials.");
     }
+
+    signIn('credentials', { username: form.username, password: form.password })
   }
 
   function handleChange(e) {

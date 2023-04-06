@@ -11,26 +11,10 @@
   font-weight: 600;
 }
 
-.button {
-  background-color: transparent;
-  border: 1px solid #00A6FF;
-  border-radius: 7px;
-  color: white;
-  font-weight: 600;
-  height: 45px;
-  width: 100%;
-  transition: filter .08s;
-}
-
 .blackText {
   color: black;
 }
 
-.hlButton {
-  background-color: #00A6FF;
-}
-
-.button:hover {
-  cursor: pointer;
-  filter: brightness(120%);
+.whiteText {
+  color: white;
 }

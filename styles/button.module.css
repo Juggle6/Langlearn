@@ -1,0 +1,42 @@
+.button {
+  position: relative;
+  background-color: transparent;
+  border: 1px solid #00A6FF;
+  border-radius: 7px;
+  font-weight: 600;
+  height: 45px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  animation: ripple 0.5s;
+  animation-iteration-count: 1;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0;
+  margin-top: -5px;
+  margin-left: -5px;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(120);
+  }
+}
+
+.hlButton {
+  background-color: #00A6FF;
+}
+
+.button:hover {
+  cursor: pointer;
+}

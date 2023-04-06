@@ -3,6 +3,7 @@ import styles from '@/styles/auth.module.css';
 import utilStyles from '@/styles/utils.module.css';
 import {signIn} from 'next-auth/react';
 import Link from 'next/link';
+import Button from '@/components/button.js';
 import {useRouter} from 'next/router';
 
 export default function Login() {
@@ -51,15 +52,13 @@ export default function Login() {
           </div>
         ) : null}
         <div className={styles.submitContent}>
-          <button className={`${utilStyles.button} ${utilStyles.hlButton}`} type="submit" onClick={handleSubmit}>Log In</button>
+          <Button clickHandler={handleSubmit} classes={utilStyles.whiteText} hl={true}>Log In</Button>
           <div className={styles.dividerDiv}>
             <div className={styles.divider}/>
             <span>or</span>
             <div className={styles.divider}/>
           </div>
-          <Link href="/sign-up">
-            <button className={`${utilStyles.button} ${utilStyles.blackText}`}>Sign Up</button>
-          </Link>
+          <Button clickHandler={() => router.push('/sign-up')}>Sign Up</Button>
         </div>
       </form>
     </div>

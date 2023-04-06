@@ -35,7 +35,7 @@ export default NextAuth({
         })
 
         if (registeredUser) {
-          if (compare(credentials.password, registeredUser.hash)) {
+          if (await compare(credentials.password, registeredUser.password)) {
             return registeredUser;
           }
         }

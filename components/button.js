@@ -1,13 +1,39 @@
 import utilStyles from '../styles/utils.module.css';
+import styles from '@/styles/button.module.css';
+import { createElement, useState, useRef } from 'react';
 
-export default function Button({ text, href, handlerFunction, type, tColor }) {
-  function openNewTab(e) {
-    e.preventDefault()
-    e.stopPropagation()
-    window.open(href, '_blank', 'noreferrer');
+export default function Button({ hl, classes, type, clickHandler, children }) {
+  const [ripple, setRipple] = useState([]);
+
+  async function createRipple(event) {
+    // Initialize the ripple
+    const rippleSpan = createElement('span', { 
+      className: styles.ripple, 
+      onAnimationEnd: (event) => setRipple(),
+      style: { left: `${event.clientX - event.target.offsetLeft}px`, top: `${event.clientY - event.target.offsetTop}px`} 
+    });
+
+    setRipple([rippleSpan])
+  };
+
+  function handleClick(event) {
+    event.preventDefault();
+    createRipple(event);
+
+    // The given function in the component parameters
+    if (clickHandler) {
+      clickHandler(event);
+    }
   }
 
-  return <button className={type === 'hl' 
-    ? `${utilStyles.button} ${utilStyles.hlButton}`
-    : `${utilStyles.button} ${tColor === 'black' ? utilStyles.blackText : null}`} onClick={handlerFunction ? handlerFunction : href ? openNewTab : null} type="button">{text}</button>
+  return (
+    <button 
+        className={`${styles.button} ${hl ? styles.hlButton : null} ${classes}`}
+        type={type}
+        onClick={handleClick}
+    >
+      {ripple}
+      {children}
+    </button>
+  )
 }

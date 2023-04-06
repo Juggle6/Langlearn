@@ -9,6 +9,10 @@ export default async function handler(req, res) {
 
   const { username, email, password } = JSON.parse(req.body);
 
+  if (!(username && email && password)) {
+    return res.status(400).json({error: "EmptyField"})
+  }
+
   const otherUsers = await prisma.User.findFirst({
     where: {
       OR: [
@@ -33,10 +37,6 @@ export default async function handler(req, res) {
       password: await hash(password),
     }
   })
-    .catch((err) => {
-      console.log(err);
-      return res.status(400).json({error: "ServerError"});
-    })
     .then((newUser) => {
       console.log(newUser);
       return res.status(200).json(savedUser);

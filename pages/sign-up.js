@@ -4,6 +4,7 @@ import {useRouter} from 'next/router';
 import styles from '@/styles/auth.module.css';
 import utilStyles from '@/styles/utils.module.css';
 import Link from 'next/link';
+import Button from '@/components/button.js';
 
 export default function SignUpPage() {
   const [form, setForm] = useState({username: '', email: '', password: ''})
@@ -28,8 +29,10 @@ export default function SignUpPage() {
 
           if (error === 'ConflictingCredentials') {
             setError("There is already someone registered with that username or email.");
+          } else if (error === 'EmptyField') {
+            setError("One of the fields in your request were empty.")
           } else {
-            setError("An error has occurred while attempting to fetch the API. Plesae try again later.");
+            setError("We have experienced a problem with processing your request. Please try again later.")
           }
           return;
         })
@@ -75,15 +78,13 @@ export default function SignUpPage() {
           </div>
         ) : null}
         <div className={styles.submitContent}>
-          <button className={`${utilStyles.button} ${utilStyles.hlButton}`} type="submit" onClick={handleSubmit}>Sign Up</button>
+          <Button classes={utilStyles.whiteText} hl={true} clickHandler={handleSubmit}>Sign Up</Button>
           <div className={styles.dividerDiv}>
             <div className={styles.divider}/>
             <span>or</span>
             <div className={styles.divider}/>
           </div>
-          <Link href="/login">
-            <button className={`${utilStyles.button} ${utilStyles.blackText}`}>Log In</button>
-          </Link>
+          <Button clickHandler={() => router.push('/login')}>Log In</Button>
         </div>
       </form>
     </div>

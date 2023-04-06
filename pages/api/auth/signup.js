@@ -1,4 +1,5 @@
 import { Prisma } from '@/lib/db.js';
+import {hash, compare} from '@/lib/hashPassword.js';
 
 export default async function handler(req, res) {
   // Only accepts POST requests
@@ -6,16 +7,16 @@ export default async function handler(req, res) {
     return res.status(405).json({message: 'Method not allowed' });
   }
 
-  const newUserData = JSON.parse(req.body);
+  const { username, email, password } = JSON.parse(req.body);
 
   const otherUsers = await prisma.User.findFirst({
     where: {
       OR: [
         {
-          username: newUserData.username,
+          username: username,
         },
         {
-          email: newUserData.email,
+          email: email,
         },
       ],
     },
@@ -25,11 +26,19 @@ export default async function handler(req, res) {
     return res.status(400).json({error: "ConflictingCredentials"})
   }
 
-  const savedUser = await prisma.User.create({
-    data: newUserData
+  const savedUser = prisma.User.create({
+    data: {
+      username: username,
+      email: email,
+      password: await hash(password),
+    }
   })
     .catch((err) => {
+      console.log(err);
       return res.status(400).json({error: "ServerError"});
     })
-  res.status(200).json(savedUser);
+    .then((newUser) => {
+      console.log(newUser);
+      return res.status(200).json(savedUser);
+  })
 }

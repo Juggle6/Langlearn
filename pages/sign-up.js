@@ -13,9 +13,12 @@ export default function SignUpPage() {
 
   async function handleSubmit(e) {
     e.preventDefault()
+
+    const { username, email, password } = form;
+
     const response = await fetch('/api/auth/signup', {
       method: 'POST',
-      body: JSON.stringify(form)
+      body: JSON.stringify({username, email, password})
     });
 
     if (!response.ok) {
@@ -33,7 +36,7 @@ export default function SignUpPage() {
     } else {
       const newUser = response.json();
 
-      signIn('credentials', { redirect: false, username: form.username, password: form.password })
+      signIn('credentials', { redirect: false, username, password })
         .then((ok, error) => {
           if (ok) {
             return router.push('/dashboard')

@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from '@prisma/client';
+import { compare } from '@/lib/hashPassword.js';
 
 const prisma = new PrismaClient();
 
@@ -18,32 +19,25 @@ export default NextAuth({
       async authorize(credentials, req) {
         const registeredUser = await prisma.User.findFirst({
           where: {
-            AND: [
+            OR: [
               {
-                OR: [
-                  {
-                    username: {
-                      equals: credentials.username
-                    },
-                  },
-                  {
-                    email: {
-                      equals: credentials.username
-                    },
-                  },
-                ]
+                username: {
+                  equals: credentials.username
+                },
               },
               {
-                password: {
-                  equals: credentials.password
-                }
-              }
+                email: {
+                  equals: credentials.username
+                },
+              },
             ]
           }
         })
 
         if (registeredUser) {
-          return registeredUser;
+          if (compare(credentials.password, registeredUser.hash)) {
+            return registeredUser;
+          }
         }
         return null;
       }

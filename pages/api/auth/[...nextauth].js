@@ -5,7 +5,7 @@ import { compare } from '@/lib/hashPassword.js';
 
 const prisma = new PrismaClient();
 
-export default NextAuth({
+export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
@@ -72,4 +72,6 @@ export default NextAuth({
   pages: {
     signIn: '/login',
   }
-})
+}
+
+export default NextAuth(authOptions);

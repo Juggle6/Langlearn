@@ -8,8 +8,8 @@ import refreshReviews from '@/lib/refreshReviews.js';
 export default function VocabularyPractice({ nextWord }) {
   return (
     <CenteredContainer>
-      <p>{nextWord.word}</p>
-      <p>{nextWord.translation}</p>
+      <p>{nextWord?.word}</p>
+      <p>{nextWord?.translation}</p>
     </CenteredContainer>
   )
 }
@@ -17,7 +17,6 @@ export default function VocabularyPractice({ nextWord }) {
 export async function getServerSideProps({ req, res }) {
   // Get session information
   const session = await getServerSession(req, res, authOptions);
-  console.log(session);
 
   // Get the current date
   let currentDate = new Date(new Date().setUTCHours(0,0,0,0)).toISOString();
@@ -26,11 +25,15 @@ export async function getServerSideProps({ req, res }) {
   refreshReviews(session.id, 'Trigedasleng');
 
   // Fetch the user's next word
-  const entry = await prisma.Review.findFirst({
-    where: {
-      date: currentDate
-    }
-  });
+  try {
+    const entry = await prisma.Review.findFirstOrThrow({
+      where: {
+        date: currentDate
+      }
+    });
+  } catch {
+    return;
+  }
 
   const nextWord = await prisma.Dictionary.findUnique({
     where: {

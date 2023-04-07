@@ -1,4 +1,4 @@
-import { Prisma } from '@/lib/db.js';
+import { prisma } from '@/lib/db.ts';
 import {hash, compare} from '@/lib/hashPassword.js';
 
 export default async function handler(req, res) {

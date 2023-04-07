@@ -1,0 +1,18 @@
+.centeredContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.centerVertical {
+  justify-content: center;
+}
+
+.centerHorizontal {
+  align-items: center;
+}
+
+.centerBoth {
+  justify-content: center;
+  align-items: center;
+}

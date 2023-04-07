@@ -16,3 +16,18 @@ model User {
     email String @unique
     password String
 }
+
+model Review {
+    id String @id @default(cuid())
+    userId String
+    wordId String
+    reviewedBefore Boolean @default(false)
+    date String
+}
+
+model Dictionary {
+    wordId Int @id @default(autoincrement())
+    word String
+    translation String
+    language String
+  }

@@ -14,7 +14,7 @@ export default function Header() {
       </nav>
       <div className={styles.headerGroup}>
         {session
-          ? <Link href="/dashboard">{session.username}</Link>
+          ? <Link href="/profile">{session.username}</Link>
           : (
             <>
               <Link href="/sign-up" className={utilStyles.navBarLink}>Sign Up</Link>

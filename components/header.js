@@ -11,6 +11,7 @@ export default function Header() {
       <nav className={styles.headerGroup}>
         <Link href="/" className={utilStyles.navBarLink}>Home</Link>
         <Link href="/dashboard" className={utilStyles.navBarLink}>Dashboard</Link>
+        <Link href="/vocabulary" className={utilStyles.navBarLink}>Vocabulary</Link>
       </nav>
       <div className={styles.headerGroup}>
         {session

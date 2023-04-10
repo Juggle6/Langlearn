@@ -1,0 +1,59 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 3rem);
+}
+
+.wordContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  color: #304D6D;
+
+}
+
+.wordContainer > p {
+  font-size: 20pt;
+  text-align: center;
+}
+
+.wordContainer > input {
+  height: 40px;
+  border-radius: 12px;
+  outline: none;
+  border: 2px solid #304D6D;
+}
+
+.wordContainer > input::placeholder {
+  color: #304D6D;
+  font-size: 12pt;
+}
+
+.wordContainer > input:focus {
+  border-color: #00A6FF;
+}
+
+.submitContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-height: 3rem;
+  max-width: 30rem;
+  width: 100%;
+  height: 100%;
+  margin: 2rem 0;
+}
+
+.submitContainer > button {
+  background-color: #00A6FF;
+  outline: none;
+  border: none;
+  color: white;
+  max-width: 8rem;
+  width: 100%;
+  height: 100%;
+}

@@ -2,6 +2,16 @@ import utilStyles from '@/styles/utils.module.css';
 import styles from '@/styles/header.module.css';
 import Link from 'next/link';
 import {useSession} from 'next-auth/react';
+import { useRouter } from 'next/router';
+
+function NavLink({ href, children }) {
+  const router = useRouter();
+  const isActive = router.pathname === href;
+
+  return (
+    <Link href={href} className={`${utilStyles.navBarLink} ${isActive ? styles.active : ''}`}>{children}</Link>
+  );
+}
 
 export default function Header() {
   const {data: session} = useSession();
@@ -9,13 +19,13 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <nav className={styles.headerGroup}>
-        <Link href="/" className={utilStyles.navBarLink}>Home</Link>
-        <Link href="/dashboard" className={utilStyles.navBarLink}>Dashboard</Link>
-        <Link href="/vocabulary" className={utilStyles.navBarLink}>Vocabulary</Link>
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="/dashboard">Dashboard</NavLink>
+        <NavLink href="/vocabulary">Vocabulary</NavLink>
       </nav>
       <div className={styles.headerGroup}>
         {session
-          ? <Link href="/profile">{session.username}</Link>
+          ? <NavLink href="/profile">{session.username}</NavLink>
           : (
             <>
               <Link href="/sign-up" className={utilStyles.navBarLink}>Sign Up</Link>
